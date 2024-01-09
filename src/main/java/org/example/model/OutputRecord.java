@@ -1,14 +1,13 @@
 package org.example.model;
 
-public class InputRecord {
+public class OutputRecord {
 
     private String data;
-    private String category;
-    private String subCategory;
     private double expense;
     private String account; // Revolut
     private String payee; // Avanti
-    private String notes;
+    private double volume;
+    private String kind;
 
     public String getData() {
         return data;
@@ -16,22 +15,6 @@ public class InputRecord {
 
     public void setData(String data) {
         this.data = data;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getSubCategory() {
-        return subCategory;
-    }
-
-    public void setSubCategory(String subCategory) {
-        this.subCategory = subCategory;
     }
 
     public double getExpense() {
@@ -58,11 +41,19 @@ public class InputRecord {
         this.payee = payee;
     }
 
-    public String getNotes() {
-        return notes;
+    public double getVolume() {
+        return volume;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
     }
 }
