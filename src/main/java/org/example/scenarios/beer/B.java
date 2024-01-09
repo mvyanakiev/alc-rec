@@ -1,7 +1,7 @@
 package org.example.scenarios.beer;
 
-import jdk.internal.util.xml.impl.Pair;
 import org.example.model.InputRecord;
+import org.example.model.Pair;
 import org.example.scenarios.Scenario;
 import org.example.util.Utils;
 
