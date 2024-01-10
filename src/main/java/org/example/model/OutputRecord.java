@@ -1,5 +1,7 @@
 package org.example.model;
 
+import static org.example.config.Config.DELIMITER;
+
 public class OutputRecord {
 
     private String data;
@@ -8,6 +10,8 @@ public class OutputRecord {
     private String payee; // Avanti
     private double volume;
     private String kind;
+
+    public OutputRecord() {}
 
     public OutputRecord(String data, double expense, String account, String payee, double volume, String kind) {
         this.data = data;
@@ -64,5 +68,17 @@ public class OutputRecord {
 
     public void setKind(String kind) {
         this.kind = kind;
+    }
+
+    public String toCsv() {
+        StringBuilder sb = new StringBuilder();
+        return sb.append(this.data).append(DELIMITER)
+                .append(this.expense).append(DELIMITER)
+                .append(this.account).append(DELIMITER)
+                .append(this.payee).append(DELIMITER)
+                .append(this.volume).append(DELIMITER)
+                .append(this.kind)
+                .append(System.lineSeparator())
+                .toString();
     }
 }

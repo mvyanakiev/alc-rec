@@ -9,9 +9,9 @@ import java.util.Map;
 
 import static org.example.config.Config.BEER_3L;
 
-public class B implements Scenario {
+public class Bira3 implements Scenario {
 
-    private final static String CRITERIA = "б3";
+    private final static String CRITERIA = "бира3";
 
     @Override
     public Pair process(InputRecord inputRecord, Map<String, Integer> scores) {
