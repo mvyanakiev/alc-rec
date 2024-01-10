@@ -6,6 +6,7 @@ import org.example.scenarios.Scenario;
 import org.example.scenarios.beer.B;
 import org.example.scenarios.beer.Bira3;
 import org.example.scenarios.beer.Bira_3;
+import org.example.scenarios.beer.ManyB;
 
 import java.util.*;
 
@@ -13,7 +14,7 @@ public class Processor {
 
     public List<OutputRecord> process(List<InputRecord> inputRecordList) {
 
-        List<Scenario> models = new ArrayList<>(Arrays.asList(new B(), new Bira3(), new Bira_3()));
+        List<Scenario> models = new ArrayList<>(Arrays.asList(new B(), new Bira3(), new Bira_3(), new ManyB()));
         OutputRecord outputRecord;
         List<OutputRecord> result = new ArrayList<>();
 
