@@ -3,18 +3,16 @@ package org.example.service;
 import org.example.model.InputRecord;
 import org.example.model.OutputRecord;
 import org.example.scenarios.Scenario;
+import org.example.scenarios.beer.B;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Processor {
 
-    public List<OutputRecord> make(List<InputRecord> inputRecordList) {
+    public List<OutputRecord> process(List<InputRecord> inputRecordList) {
 
-        List<Scenario> models = new ArrayList<>();
-        OutputRecord outputRecord = null;
+        List<Scenario> models = new ArrayList<>(Arrays.asList(new B()));
+        OutputRecord outputRecord;
         List<OutputRecord> result = new ArrayList<>();
 
         for (InputRecord inputRecord : inputRecordList) {
@@ -25,8 +23,10 @@ public class Processor {
                 model.process(inputRecord, scores);
             }
 
-            outputRecord = convert(inputRecord, scores);
-            result.add(outputRecord);
+            if (!scores.isEmpty()) {
+                outputRecord = convert(inputRecord, scores);
+                result.add(outputRecord);
+            }
         }
 
         return result;
@@ -34,18 +34,28 @@ public class Processor {
 
     private OutputRecord convert(InputRecord inputRecord, Map<String, Integer> scores) {
 
-        // TODO find big score
+        String key = null;
+        int score = Integer.MIN_VALUE;
 
-        InputRecord bigestScore = null;
+        for (Map.Entry<String, Integer> entry : scores.entrySet()) {
 
-        OutputRecord result = new OutputRecord();
+            if (entry.getValue() > score) {
+                score = entry.getValue();
+                key = entry.getKey();
+            }
+        }
 
-        // TODO fill result;
+        assert key != null;
+        String[] split = key.split("\\s+");
 
+        OutputRecord result = new OutputRecord(
+                inputRecord.getData(),
+                inputRecord.getExpense(),
+                inputRecord.getAccount(),
+                inputRecord.getPayee(),
+                Double.parseDouble(split[1]),
+                split[0]);
 
         return result;
-
     }
-
-
 }

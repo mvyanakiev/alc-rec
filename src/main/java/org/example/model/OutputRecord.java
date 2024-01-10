@@ -9,6 +9,15 @@ public class OutputRecord {
     private double volume;
     private String kind;
 
+    public OutputRecord(String data, double expense, String account, String payee, double volume, String kind) {
+        this.data = data;
+        this.expense = expense;
+        this.account = account;
+        this.payee = payee;
+        this.volume = volume;
+        this.kind = kind;
+    }
+
     public String getData() {
         return data;
     }
