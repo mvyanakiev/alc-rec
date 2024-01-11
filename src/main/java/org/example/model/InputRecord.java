@@ -6,7 +6,7 @@ public class InputRecord {
     private String category;
     private String subCategory;
     private double expense;
-    private String account; // Revolut
+    private Account account; // Revolut
     private String payee; // Avanti
     private String notes;
 
@@ -15,7 +15,7 @@ public class InputRecord {
         this.category = category;
         this.subCategory = subCategory;
         this.expense = expense;
-        this.account = account;
+        setAccount(account);
         this.payee = payee;
         this.notes = notes;
     }
@@ -52,12 +52,36 @@ public class InputRecord {
         this.expense = expense;
     }
 
-    public String getAccount() {
+    public Account getAccount() {
         return account;
     }
 
-    public void setAccount(String account) {
+    public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public void setAccount(String inputType) {
+        if (inputType == null || inputType.isEmpty()) {
+            throw new NullPointerException("Invalid Account");
+        }
+
+        switch (inputType.toUpperCase()) {
+            case "REVOLUT":
+                this.account = Account.REVOLUT;
+                break;
+            case "CASH":
+                this.account = Account.CASH;
+                break;
+            case "CCB":
+                this.account = Account.CCB;
+                break;
+            case "FIB":
+                this.account = Account.FIB;
+                break;
+
+            default:
+                throw new IllegalArgumentException("Invalid Account type");
+        }
     }
 
     public String getPayee() {

@@ -1,5 +1,7 @@
 package org.example.utils;
 
+import org.example.model.Account;
+
 import java.util.Random;
 
 
@@ -8,10 +10,11 @@ public class TestUtils {
     private final static Random random = new Random();
 
     public static String randomAccount() {
-        String[] allAccounts = {"Revolut", "Cash", "CCB", "FIB"};
+//        String[] allAccounts = {"Revolut", "Cash", "CCB", "FIB"};
+        Account[] allAccounts = {Account.REVOLUT, Account.CASH, Account.CCB, Account.FIB};
 
         int i = random.nextInt(allAccounts.length);
-        return allAccounts[i];
+        return allAccounts[i].toString();
     }
 
     public static String randomPayee() {
