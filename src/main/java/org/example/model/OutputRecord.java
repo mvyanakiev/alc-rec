@@ -92,7 +92,6 @@ public class OutputRecord {
                 .append(this.volume).append(DELIMITER)
                 .append(this.kind).append(DELIMITER)
                 .append(this.points)
-//                .append(System.lineSeparator())
                 .toString();
     }
 }

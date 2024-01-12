@@ -10,7 +10,6 @@ public class TestUtils {
     private final static Random random = new Random();
 
     public static String randomAccount() {
-//        String[] allAccounts = {"Revolut", "Cash", "CCB", "FIB"};
         Account[] allAccounts = {Account.REVOLUT, Account.CASH, Account.CCB, Account.FIB};
 
         int i = random.nextInt(allAccounts.length);

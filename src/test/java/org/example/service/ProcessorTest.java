@@ -9,10 +9,7 @@ import org.example.util.Processor;
 import org.example.util.Utils;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static org.example.utils.TestUtils.randomAccount;
 import static org.example.utils.TestUtils.randomPayee;
@@ -68,10 +65,30 @@ class ProcessorTest {
         assertEquals(undefinedList.size(), results.size());
 
         results.stream().forEach(r -> System.out.println(Utils.convert(r).toCsv()));
-        assertEquals(0, results.get(0).getResultMap().size());
+        assertEquals(1, results.get(0).getResultMap().size());
         assertEquals(1, results.get(1).getResultMap().size());
         assertEquals(0, results.get(2).getResultMap().size());
-        assertTrue(results.get(1).getResultMap().containsKey("бира 5.0"));
+        assertTrue(results.get(1).getResultMap().containsKey("бира 2.5"));
+    }
+
+    @Test
+    void processByPriceTest() {
+        List<UndefinedResult> undefinedList = Utils.createUndefinedList(getInputMathList());
+
+        List<Double> prices = Arrays.asList(
+                1.6
+                , 1.4
+                , 1.2
+        );
+        List<UndefinedResult> results = processor.processByPrice(prices, "бира", 0.5, undefinedList);
+
+        assertEquals(undefinedList.size(), results.size());
+
+        results.stream().forEach(r -> System.out.println(Utils.convert(r).toCsv()));
+//        assertEquals(0, results.get(0).getResultMap().size());
+//        assertEquals(1, results.get(1).getResultMap().size());
+//        assertEquals(0, results.get(2).getResultMap().size());
+//        assertTrue(results.get(1).getResultMap().containsKey("бира 2.5"));
     }
 
     private List<InputRecord> getInputList() {
@@ -201,7 +218,7 @@ class ProcessorTest {
                 8.4,
                 Account.CASH.toString(),
                 randomPayee(),
-                "null"
+                null
         );
 
         InputRecord math2 = new InputRecord(
@@ -224,10 +241,44 @@ class ProcessorTest {
                 null
         );
 
+        InputRecord math4 = new InputRecord(
+                faker.date().birthday().toString(),
+                CATEGORY,
+                SUBCATEGORY_A,
+                1.6,
+                Account.CASH.toString(),
+                null,
+                null
+        );
+
+        InputRecord math5 = new InputRecord(
+                faker.date().birthday().toString(),
+                CATEGORY,
+                SUBCATEGORY_A,
+                2.4,
+                Account.CASH.toString(),
+                null,
+                null
+        );
+
+        InputRecord math6 = new InputRecord(
+                faker.date().birthday().toString(),
+                CATEGORY,
+                SUBCATEGORY_A,
+                5.6,
+                Account.CASH.toString(),
+                null,
+                null
+        );
+
+
         List<InputRecord> list = new ArrayList<>();
         list.add(math1);
         list.add(math2);
         list.add(math3);
+        list.add(math4);
+        list.add(math5);
+        list.add(math6);
 
         return list;
     }
