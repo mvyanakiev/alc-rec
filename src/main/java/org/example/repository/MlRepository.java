@@ -1,5 +1,6 @@
 package org.example.repository;
 
+import java.sql.*;
 import java.util.*;
 
 public class MlRepository {
@@ -37,5 +38,24 @@ public class MlRepository {
         result.add("уиски 0.7");
 
         return result;
+    }
+
+    public String getKeyById(int id) {
+        String sql = "SELECT key FROM keys WHERE id = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getString("key");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
