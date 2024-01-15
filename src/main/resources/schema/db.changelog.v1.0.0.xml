@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1.0.0-create-table-keys" author="Milko">
+        <createTable tableName="KEYS">
+            <column name="ID" type="SERIAL" incrementBy="1">
+                <constraints unique="true" uniqueConstraintName="ID_AUTO_INCREMENT" primaryKey="true" />
+            </column>
+            <column name="KEY" type="VARCHAR(128)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
