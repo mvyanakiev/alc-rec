@@ -12,10 +12,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
 
-        String ipAddress = "192.168.1.";
-        int port = 8080;
+        String ipAddress = "192.168.1.108";
+        int port = 50470;
 
-        String csvUrl = "http://" + ipAddress + ":" + port + "/report.csv";
+        String csvUrl = "http://" + ipAddress + ":" + port + "/Report.csv";
 
         try {
             downloadCsv(csvUrl);
@@ -31,7 +31,7 @@ public class Main {
         // call service calculate(inputRecordList)
 
         MlRepository repository = new MlRepository();
-        String keyById = repository.getKeyById(12);
+        String keyById = repository.getKeyById(3);
         System.out.println(keyById);
 
     }
