@@ -4,6 +4,9 @@ public class Config {
 
     public static String DELIMITER = ",";
 
+    public static final String INPUT_FILE = "input/table.csv";
+
+
     public static String BEER_3L = "бира 3";
 
     public static Integer HIGH_POSSIBILITY = 3;

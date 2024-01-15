@@ -10,7 +10,7 @@ public class InputRecord {
     private String payee; // Avanti
     private String notes;
 
-    public InputRecord(String data, String category, String subCategory, double expense, String account, String payee, String notes) {
+        public InputRecord(String data, String category, String subCategory, double expense, String account, String payee, String notes) {
         this.data = data;
         this.category = category;
         this.subCategory = subCategory;
