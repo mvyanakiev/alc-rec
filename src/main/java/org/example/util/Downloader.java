@@ -1,12 +1,5 @@
 package org.example.util;
 
-import java.io.IOException;
-//import java.net.URI;
-//import java.net.http.HttpClient;
-//import java.net.http.HttpRequest;
-//import java.net.http.HttpResponse;
-//import java.nio.file.Path;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,19 +29,5 @@ public class Downloader {
         } finally {
             httpURLConnection.disconnect();
         }
-
-
-//        HttpClient httpClient = HttpClient.newHttpClient();
-//        HttpRequest request = HttpRequest.newBuilder()
-//                .uri(URI.create(csvUrl))
-//                .build();
-//
-//        HttpResponse<Path> response = httpClient.send(request, HttpResponse.BodyHandlers.ofFile(Path.of("output")));
-//
-//        if (response.statusCode() == 200) {
-//            System.out.println("CSV file downloaded successfully to: " + response.body());
-//        } else {
-//            System.err.println("Failed to download CSV file. HTTP Status Code: " + response.statusCode());
-//        }
     }
 }

@@ -17,16 +17,16 @@ public class Main {
 
         String csvUrl = "http://" + ipAddress + ":" + port + "/Report.csv";
 
-        try {
-            downloadCsv(csvUrl);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            downloadCsv(csvUrl);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
 
 
-//        List<String[]> inputContent = ReadInputData.readContent();
+        List<String[]> inputContent = ReadInputData.readContent();
         // convert to List<InputRecord> inputRecordList =
         // call service calculate(inputRecordList)
 

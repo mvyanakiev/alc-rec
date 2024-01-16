@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+import static org.example.config.Config.CATEGORY;
+import static org.example.config.Config.SUBCATEGORY_ALC;
 import static org.example.utils.TestUtils.randomAccount;
 import static org.example.utils.TestUtils.randomPayee;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,9 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ProcessorTest {
 
     private final Faker faker = new Faker();
-
-    private final String CATEGORY = "Забавление";
-    private final String SUBCATEGORY_A = "Алкохол";
 
     // TODO Mock it
     MlRepository repository = new MlRepository();
@@ -95,7 +94,7 @@ class ProcessorTest {
         InputRecord ir1 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 1.2,
                 randomAccount(),
                 randomPayee(),
@@ -105,7 +104,7 @@ class ProcessorTest {
         InputRecord ir2 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 7,
                 randomAccount(),
                 randomPayee(),
@@ -115,7 +114,7 @@ class ProcessorTest {
         InputRecord ir3 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 7,
                 randomAccount(),
                 randomPayee(),
@@ -125,7 +124,7 @@ class ProcessorTest {
         InputRecord ir4 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 7,
                 randomAccount(),
                 randomPayee(),
@@ -135,7 +134,7 @@ class ProcessorTest {
         InputRecord ir5 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 7,
                 randomAccount(),
                 randomPayee(),
@@ -145,7 +144,7 @@ class ProcessorTest {
         InputRecord ir6 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 7,
                 randomAccount(),
                 randomPayee(),
@@ -155,7 +154,7 @@ class ProcessorTest {
         InputRecord ir7 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 8.2,
                 randomAccount(),
                 randomPayee(),
@@ -165,7 +164,7 @@ class ProcessorTest {
         InputRecord ir8 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 7,
                 randomAccount(),
                 randomPayee(),
@@ -175,23 +174,22 @@ class ProcessorTest {
         InputRecord math1 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 8.4,
                 Account.CASH.toString(),
                 randomPayee(),
-               "null"
+                "null"
         );
 
         InputRecord math2 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 7,
                 Account.CASH.toString(),
                 null,
                 "null"
         );
-
 
 
         List<InputRecord> list = new ArrayList<>();
@@ -214,7 +212,7 @@ class ProcessorTest {
         InputRecord math1 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 8.4,
                 Account.CASH.toString(),
                 randomPayee(),
@@ -224,7 +222,7 @@ class ProcessorTest {
         InputRecord math2 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 7,
                 Account.CASH.toString(),
                 null,
@@ -234,7 +232,7 @@ class ProcessorTest {
         InputRecord math3 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 3.14,
                 Account.CASH.toString(),
                 null,
@@ -244,7 +242,7 @@ class ProcessorTest {
         InputRecord math4 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 1.6,
                 Account.CASH.toString(),
                 null,
@@ -254,7 +252,7 @@ class ProcessorTest {
         InputRecord math5 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 2.4,
                 Account.CASH.toString(),
                 null,
@@ -264,13 +262,12 @@ class ProcessorTest {
         InputRecord math6 = new InputRecord(
                 faker.date().birthday().toString(),
                 CATEGORY,
-                SUBCATEGORY_A,
+                SUBCATEGORY_ALC,
                 5.6,
                 Account.CASH.toString(),
                 null,
                 null
         );
-
 
         List<InputRecord> list = new ArrayList<>();
         list.add(math1);
@@ -279,7 +276,6 @@ class ProcessorTest {
         list.add(math4);
         list.add(math5);
         list.add(math6);
-
         return list;
     }
 }
