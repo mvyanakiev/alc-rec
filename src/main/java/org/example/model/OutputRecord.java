@@ -82,7 +82,10 @@ public class OutputRecord {
         this.points = points;
     }
 
-    public String toCsv() {
+
+    // TODO move to UtilConvertor class
+
+    public String convertToCsv() {
         StringBuilder sb = new StringBuilder();
         return sb.append(this.data).append(DELIMITER)
                 .append(this.expense).append(DELIMITER)

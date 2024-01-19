@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class Utils {
 
-    public static List<UndefinedResult> createUndefinedList(List<InputRecord> inputRecordList) {
+    public static List<UndefinedResult> convertToUndefinedReultsList(List<InputRecord> inputRecordList) {
 
         List<UndefinedResult> result = new ArrayList<>();
 
@@ -26,22 +26,9 @@ public class Utils {
         return result;
     }
 
-    public static Map<String, Integer> addPoints(String key, int point, Map<String, Integer> map) {
-        if (key == null) {
-            return map;
-        }
+    // TODO move to UtilConvertor class
 
-        if (!map.containsKey(key)) {
-            map.put(key, point);
-        } else {
-            int currentPoint = map.get(key);
-            map.replace(key, currentPoint + point);
-        }
-
-        return map;
-    }
-
-    public static OutputRecord convert(UndefinedResult undefinedResult) {
+    public static OutputRecord convertToOutputRecord(UndefinedResult undefinedResult) {
 
         Map<String, Integer> scores = undefinedResult.getResultMap();
         InputRecord inputRecord = undefinedResult.getInputRecord();
@@ -50,7 +37,6 @@ public class Utils {
         int score = Integer.MIN_VALUE;
 
         for (Map.Entry<String, Integer> entry : scores.entrySet()) {
-
             if (entry.getValue() > score) {
                 score = entry.getValue();
                 key = entry.getKey();
@@ -84,6 +70,21 @@ public class Utils {
                 0);
 
         return result;
+    }
+
+    public static Map<String, Integer> addPoints(String key, int point, Map<String, Integer> map) {
+        if (key == null) {
+            return map;
+        }
+
+        if (!map.containsKey(key)) {
+            map.put(key, point);
+        } else {
+            int currentPoint = map.get(key);
+            map.replace(key, currentPoint + point);
+        }
+
+        return map;
     }
 
     public static double roundToNDecimalPlaces(double value, int decimalPlaces) {

@@ -30,7 +30,7 @@ class ProcessorTest {
 
     @Test
     void oneWord() {
-        List<UndefinedResult> undefinedList = Utils.createUndefinedList(getInputList());
+        List<UndefinedResult> undefinedList = Utils.convertToUndefinedReultsList(getInputList());
         Map<String, String> singleWordCombinations = repository.loadSingleWordCombinations();
 
         List<UndefinedResult> results = processor.processWithSingleWords(undefinedList, singleWordCombinations);
@@ -38,13 +38,13 @@ class ProcessorTest {
         assertEquals(1, results.get(0).getResultMap().size());
         assertEquals(0, results.get(3).getResultMap().size());
 
-        results.stream().forEach(r -> System.out.println(Utils.convert(r).toCsv()));
+        results.stream().forEach(r -> System.out.println(Utils.convertToOutputRecord(r).convertToCsv()));
     }
 
     @Test
     void moreWords() {
         String key = "бира 3";
-        List<UndefinedResult> undefinedList = Utils.createUndefinedList(getInputList());
+        List<UndefinedResult> undefinedList = Utils.convertToUndefinedReultsList(getInputList());
         Set<String> combinations = repository.loadByKey(key);
 
         List<UndefinedResult> results = processor.processWithManyWords(key, combinations, undefinedList);
@@ -53,17 +53,17 @@ class ProcessorTest {
         assertEquals(0, results.get(3).getResultMap().size());
         assertEquals(1, results.get(6).getResultMap().size());
 
-        results.stream().forEach(r -> System.out.println(Utils.convert(r).toCsv()));
+        results.stream().forEach(r -> System.out.println(Utils.convertToOutputRecord(r).convertToCsv()));
     }
 
     @Test
     void mathTest() {
-        List<UndefinedResult> undefinedList = Utils.createUndefinedList(getInputMathList());
+        List<UndefinedResult> undefinedList = Utils.convertToUndefinedReultsList(getInputMathList());
         List<UndefinedResult> results = processor.mathProcess(undefinedList);
 
         assertEquals(undefinedList.size(), results.size());
 
-        results.stream().forEach(r -> System.out.println(Utils.convert(r).toCsv()));
+        results.stream().forEach(r -> System.out.println(Utils.convertToOutputRecord(r).convertToCsv()));
         assertEquals(1, results.get(0).getResultMap().size());
         assertEquals(1, results.get(1).getResultMap().size());
         assertEquals(0, results.get(2).getResultMap().size());
@@ -72,7 +72,7 @@ class ProcessorTest {
 
     @Test
     void processByPriceTest() {
-        List<UndefinedResult> undefinedList = Utils.createUndefinedList(getInputMathList());
+        List<UndefinedResult> undefinedList = Utils.convertToUndefinedReultsList(getInputMathList());
 
         List<Double> prices = Arrays.asList(
                 1.6
@@ -83,7 +83,7 @@ class ProcessorTest {
 
         assertEquals(undefinedList.size(), results.size());
 
-        results.stream().forEach(r -> System.out.println(Utils.convert(r).toCsv()));
+        results.stream().forEach(r -> System.out.println(Utils.convertToOutputRecord(r).convertToCsv()));
 //        assertEquals(0, results.get(0).getResultMap().size());
 //        assertEquals(1, results.get(1).getResultMap().size());
 //        assertEquals(0, results.get(2).getResultMap().size());

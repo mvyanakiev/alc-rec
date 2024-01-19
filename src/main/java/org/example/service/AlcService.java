@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.example.util.Utils.createUndefinedList;
+import static org.example.util.Utils.convertToUndefinedReultsList;
 
 public class AlcService {
 
@@ -27,7 +27,7 @@ public class AlcService {
 
     public List<OutputRecord> calculate(List<InputRecord> inputRecordList) {
 
-        List<UndefinedResult> undefinedResultList = createUndefinedList(inputRecordList);
+        List<UndefinedResult> undefinedResultList = convertToUndefinedReultsList(inputRecordList);
 
         Map<String, String> singleWordCombinations = repository.loadSingleWordCombinations();
         undefinedResultList = processor.processWithSingleWords(undefinedResultList, singleWordCombinations);
@@ -48,7 +48,7 @@ public class AlcService {
         List<OutputRecord> finalResult = new ArrayList<>();
 
         for (UndefinedResult undefinedResult : undefinedResultList) {
-            finalResult.add(Utils.convert(undefinedResult));
+            finalResult.add(Utils.convertToOutputRecord(undefinedResult));
         }
 
         return finalResult.stream().filter(e -> e.getPoints() > 0).collect(Collectors.toList());
