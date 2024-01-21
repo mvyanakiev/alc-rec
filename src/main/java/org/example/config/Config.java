@@ -4,7 +4,7 @@ public class Config {
 
     public final static String DELIMITER = ",";
 
-    public static final String INPUT_FILE = "input/report.csv";
+    public static final String INPUT_FILE = "input/report.csv"; // TODO fix path
 
     public static String BEER_3L = "бира 3";
 

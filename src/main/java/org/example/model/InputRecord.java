@@ -20,6 +20,9 @@ public class InputRecord {
         this.notes = notes;
     }
 
+    public InputRecord() {
+    }
+
     public String getData() {
         return data;
     }
@@ -72,10 +75,10 @@ public class InputRecord {
             case "CASH":
                 this.account = Account.CASH;
                 break;
-            case "CCB":
+            case "ЦКБ":
                 this.account = Account.CCB;
                 break;
-            case "FIB":
+            case "ПИБ":
                 this.account = Account.FIB;
                 break;
 

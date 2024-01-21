@@ -1,16 +1,20 @@
 package org.example;
 
+import org.example.model.InputRecord;
+import org.example.model.OutputRecord;
 import org.example.repository.MlRepository;
+import org.example.service.AlcService;
+import org.example.util.Processor;
 import org.example.util.ReadInputData;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.example.util.Downloader.downloadCsv;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-
 
         String ipAddress = "192.168.1.108";
         int port = 50470;
@@ -25,14 +29,37 @@ public class Main {
 //            throw new RuntimeException(e);
 //        }
 
-
         List<String[]> inputContent = ReadInputData.readContent();
-        // convert to List<InputRecord> inputRecordList =
-        // call service calculate(inputRecordList)
+        List<InputRecord> inputRecordList = new ArrayList<>();
+
+        int i = 1;
+        while (!"".equals(inputContent.get(i)[0])) {
+            InputRecord inputRecord = new InputRecord();
+
+            inputRecord.setData(inputContent.get(i)[0]);
+            inputRecord.setCategory(cleanQuotes(inputContent.get(i)[1]));
+            inputRecord.setSubCategory(cleanQuotes(inputContent.get(i)[2]));
+            inputRecord.setExpense(Double.parseDouble(cleanQuotes(inputContent.get(i)[3]).trim()));
+            inputRecord.setAccount(cleanQuotes(inputContent.get(i)[4]));
+            inputRecord.setPayee(cleanQuotes(inputContent.get(i)[5]));
+            inputRecord.setNotes(cleanQuotes(inputContent.get(i)[6]));
+
+            inputRecordList.add(inputRecord);
+            i++;
+        }
 
         MlRepository repository = new MlRepository();
+        Processor processor= new Processor();
+        AlcService alcService = new AlcService(processor, repository);
+
+        List<OutputRecord> outputRecordList = alcService.calculate(inputRecordList);
+        outputRecordList.stream().forEach(a -> System.out.println(a.convertToCsv()));
+
         String keyById = repository.getKeyById(3);
         System.out.println(keyById);
+    }
 
+    private static String cleanQuotes(String in) {
+        return in.substring(1, in.length()-1);
     }
 }

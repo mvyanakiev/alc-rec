@@ -27,31 +27,6 @@ public class ReadInputData {
         try {
             while ((line = bufferedReader.readLine()) != null) {
 
-                // s -> s.replace("\"", "")
-
-                String[] split = line.split(DELIMITER);
-
-
-                // TODO remove double double quotes from begin and end of each field and fix price to double
-
-//                String[] fixed = new String[split.length];
-//                int i = 0;
-//                for (String s : split) {
-//
-//                    s.trim();
-//
-//                    s = s.substring(2, s.length() - 2);
-//
-////                    s.replace("\"", "");
-//                    fixed[i] = s;
-//                    i++;
-//
-//                }
-//                result.add(fixed);
-
-
-
-// original
                 String[] tokens = Arrays
                     .stream(line.split(DELIMITER))
                     .map(String::trim)
@@ -70,4 +45,3 @@ public class ReadInputData {
         return result;
     }
 }
-
