@@ -4,6 +4,7 @@ import org.example.model.InputRecord;
 import org.example.model.OutputRecord;
 import org.example.model.UndefinedResult;
 import org.example.repository.MlRepository;
+import org.example.repository.Repository;
 import org.example.util.Processor;
 import org.example.util.Utils;
 
@@ -18,9 +19,9 @@ import static org.example.util.Utils.convertToUndefinedReultsList;
 public class AlcService {
 
     private final Processor processor;
-    private final MlRepository repository;
+    private final Repository repository;
 
-    public AlcService(Processor processor, MlRepository repository) {
+    public AlcService(Processor processor, Repository repository) {
         this.processor = processor;
         this.repository = repository;
     }
@@ -48,9 +49,13 @@ public class AlcService {
         List<OutputRecord> finalResult = new ArrayList<>();
 
         for (UndefinedResult undefinedResult : undefinedResultList) {
-            finalResult.add(Utils.convertToOutputRecord(undefinedResult));
+            OutputRecord outputRecord = Utils.convertToOutputRecord(undefinedResult);
+
+            finalResult.add(outputRecord);
+//            if (outputRecord.getPoints() > 0) {
+//            }
         }
 
-        return finalResult.stream().filter(e -> e.getPoints() > 0).collect(Collectors.toList());
+        return finalResult;
     }
 }

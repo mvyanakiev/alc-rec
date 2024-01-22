@@ -3,6 +3,7 @@ package org.example;
 import org.example.model.InputRecord;
 import org.example.model.OutputRecord;
 import org.example.repository.MlRepository;
+import org.example.repository.Repository;
 import org.example.service.AlcService;
 import org.example.util.Processor;
 import org.example.util.ReadInputData;
@@ -11,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.util.Downloader.downloadCsv;
+//import static org.example.util.Downloader.downloadCsv;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -48,9 +49,9 @@ public class Main {
             i++;
         }
 
-        MlRepository repository = new MlRepository();
-        Processor processor= new Processor();
-        AlcService alcService = new AlcService(processor, repository);
+        Repository repository = new MlRepository();
+        Processor processor= new Processor(); // TODO Да мине през интерфейс -> виж Repository
+        AlcService alcService = new AlcService(processor, repository); // TODO подаваш интерфейси
 
         List<OutputRecord> outputRecordList = alcService.calculate(inputRecordList);
         outputRecordList.stream().forEach(a -> System.out.println(a.convertToCsv()));

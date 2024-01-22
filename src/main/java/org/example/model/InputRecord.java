@@ -68,11 +68,11 @@ public class InputRecord {
             throw new NullPointerException("Invalid Account");
         }
 
-        switch (inputType.toUpperCase()) {
-            case "REVOLUT":
+        switch (inputType) {
+            case "Revolut":
                 this.account = Account.REVOLUT;
                 break;
-            case "CASH":
+            case "Cash":
                 this.account = Account.CASH;
                 break;
             case "ЦКБ":
@@ -81,9 +81,18 @@ public class InputRecord {
             case "ПИБ":
                 this.account = Account.FIB;
                 break;
+            case "Спестовна":
+                this.account = Account.SAVING;
+                break;
+            case "Почивка":
+                this.account = Account.LEISURE;
+                break;
+            case "Поддръжка кола":
+                this.account = Account.CAR_SUPPORT;
+                break;
 
             default:
-                throw new IllegalArgumentException("Invalid Account type");
+                throw new IllegalArgumentException("Invalid Account type: " + inputType);
         }
     }
 

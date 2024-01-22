@@ -3,9 +3,7 @@ package org.example.repository;
 import java.sql.*;
 import java.util.*;
 
-public class MlRepository {
-
-    // просто симулирам репоситори понеже нямам база сега
+public class MlRepository implements Repository {
 
     public Map<String, String> loadSingleWordCombinations() {
 
@@ -21,6 +19,7 @@ public class MlRepository {
         return result;
     }
 
+    @Override
     public Set<String> loadByKey(String key) {
 
         Set<String> result = new HashSet<>();
@@ -40,6 +39,7 @@ public class MlRepository {
         return result;
     }
 
+    @Override
     public String getKeyById(int id) {
         String sql = "SELECT key FROM keys WHERE id = ?";
 

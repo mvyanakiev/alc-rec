@@ -24,6 +24,11 @@ public class ReadInputData {
         BufferedReader bufferedReader = new BufferedReader(streamReader);
         String line = "";
 
+
+//        String path =  this.getClass().getClassLoader()
+//                .getResource("employees.csv")
+//                .getPath();
+
         try {
             while ((line = bufferedReader.readLine()) != null) {
 

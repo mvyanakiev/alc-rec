@@ -13,7 +13,7 @@ public class TestUtils {
         Account[] allAccounts = {Account.REVOLUT, Account.CASH, Account.CCB, Account.FIB};
 
         int i = random.nextInt(allAccounts.length);
-        return allAccounts[i].toString();
+        return allAccounts[i].toString().toUpperCase();
     }
 
     public static String randomPayee() {
