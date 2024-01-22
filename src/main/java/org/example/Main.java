@@ -1,5 +1,6 @@
 package org.example;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.example.model.InputRecord;
 import org.example.model.OutputRecord;
 import org.example.repository.MlRepository;
@@ -12,10 +13,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.example.util.ConvertUtils.toJson;
+
 //import static org.example.util.Downloader.downloadCsv;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, JsonProcessingException {
 
         String ipAddress = "192.168.1.108";
         int port = 50470;
@@ -47,6 +50,10 @@ public class Main {
 
             inputRecordList.add(inputRecord);
             i++;
+
+//            if (!"".equals(inputRecord.getNotes())) {
+//                System.out.println(inputRecord.getNotes());
+//            }
         }
 
         Repository repository = new MlRepository();
@@ -54,10 +61,15 @@ public class Main {
         AlcService alcService = new AlcService(processor, repository); // TODO подаваш интерфейси
 
         List<OutputRecord> outputRecordList = alcService.calculate(inputRecordList);
-        outputRecordList.stream().forEach(a -> System.out.println(a.convertToCsv()));
 
-        String keyById = repository.getKeyById(3);
-        System.out.println(keyById);
+        for (OutputRecord outputRecord : outputRecordList) {
+            System.out.println(toJson(outputRecord));
+        }
+
+
+
+//        String keyById = repository.getKeyById(3);
+//        System.out.println(keyById);
     }
 
     private static String cleanQuotes(String in) {

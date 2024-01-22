@@ -51,9 +51,9 @@ public class AlcService {
         for (UndefinedResult undefinedResult : undefinedResultList) {
             OutputRecord outputRecord = Utils.convertToOutputRecord(undefinedResult);
 
-            finalResult.add(outputRecord);
-//            if (outputRecord.getPoints() > 0) {
-//            }
+            if (outputRecord.getPoints() > 0) {
+                finalResult.add(outputRecord);
+            }
         }
 
         return finalResult;

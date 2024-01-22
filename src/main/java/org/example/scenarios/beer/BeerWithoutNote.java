@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.example.config.Config.LOW_POSSIBILITY;
+import static org.example.config.Config.SUBCATEGORY_ALC;
 import static org.example.util.Utils.addPoints;
 
 public class BeerWithoutNote implements OtherProcesses {
@@ -22,12 +23,15 @@ public class BeerWithoutNote implements OtherProcesses {
         List<UndefinedResult> result = new ArrayList<>();
 
         for (UndefinedResult undefinedResult : undefinedResultList) {
-            double count = undefinedResult.getInputRecord().getExpense() / BEER_PRICE;
+            if (!SUBCATEGORY_ALC.equals(undefinedResult.getInputRecord().getSubCategory())) {
+                continue;
+            }
 
+            double count = undefinedResult.getInputRecord().getExpense() / BEER_PRICE;
             count = Utils.roundToNDecimalPlaces(count, 2);
 
             if ((count % 1) == 0
-                    && undefinedResult.getInputRecord().getNotes() == null
+//                    && undefinedResult.getInputRecord().getNotes() == null
                     && undefinedResult.getInputRecord().getAccount() == Account.CASH
             ) {
                 String key = KEY + count * VOLUME_PER_UNIT;
