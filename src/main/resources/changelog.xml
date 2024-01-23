@@ -9,9 +9,9 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
-<!--    <include file="schema/db.changelog.v1.0.0.xml"/>-->
-<!--    <include file="schema/db.changelog.v1.0.1.xml"/>-->
-<!--    <include file="schema/db.changelog.v1.0.2.xml"/>-->
+    <include file="schema/db.changelog.v1.0.0.xml"/>
+    <include file="schema/db.changelog.v1.0.1.xml"/>
+    <include file="schema/db.changelog.v1.0.2.xml"/>
     <include file="schema/db.changelog.v1.0.3.xml"/>
 
 </databaseChangeLog>

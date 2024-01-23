@@ -8,10 +8,13 @@ import org.example.repository.Repository;
 import org.example.service.AlcService;
 import org.example.util.Processor;
 import org.example.util.ReadInputData;
+import org.example.util.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static org.example.util.ConvertUtils.toJson;
 
@@ -63,13 +66,13 @@ public class Main {
         List<OutputRecord> outputRecordList = alcService.calculate(inputRecordList);
 
         for (OutputRecord outputRecord : outputRecordList) {
-            System.out.println(toJson(outputRecord));
+            System.out.println(outputRecord.convertToCsv());
         }
 
-
-
 //        String keyById = repository.getKeyById(3);
-//        System.out.println(keyById);
+//        Map<String, String> singleWordCombinations = repository.loadSingleWordCombinations();
+//        Set<String> strings = repository.loadKeys();
+//        Set<String> byKey = repository.loadByKey("бира 2.5");
     }
 
     private static String cleanQuotes(String in) {

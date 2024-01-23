@@ -6,37 +6,63 @@ import java.util.*;
 public class MlRepository implements Repository {
 
     public Map<String, String> loadSingleWordCombinations() {
+        String sql = "SELECT i.input, k.key FROM inputs i JOIN keys k ON k.id = i.key_id;";
 
-        Map<String, String> result = new HashMap<>();
-        result.put("б3", "бира 3");
-        result.put("b3", "бира 3");
-        result.put("бира3", "бира 3");
-        result.put("бира 3", "бира 3");
+        Map<String, String> resultMap = new HashMap<>();
 
-        result.put("уиски 0.7", "уиски 0.7");
-        result.put("w0.7", "уиски 0.7");
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-        return result;
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    resultMap.put(resultSet.getString("input"), resultSet.getString("key"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultMap;
     }
 
     @Override
     public Set<String> loadByKey(String key) {
+        String sql = "SELECT i.input FROM inputs i JOIN keys k ON k.id = i.key_id WHERE k.key=?";
 
-        Set<String> result = new HashSet<>();
-        result.add("б3");
-        result.add("b3");
-        result.add("бира3");
-        result.add("бира 3");
+        Set<String> resultList = new HashSet<>();
 
-        return result;
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, key);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    resultList.add(resultSet.getString("input"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return resultList;
     }
 
     public Set<String> loadKeys() {
-        Set<String> result = new HashSet<>();
-        result.add("бира 3");
-        result.add("уиски 0.7");
+        String sql = "SELECT key FROM keys;";
 
-        return result;
+        Set<String> resultList = new HashSet<>();
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    resultList.add(resultSet.getString("key"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultList;
     }
 
     @Override
@@ -55,7 +81,6 @@ public class MlRepository implements Repository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 }
