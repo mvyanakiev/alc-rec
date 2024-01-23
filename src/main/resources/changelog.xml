@@ -11,9 +11,8 @@
 
     <include file="schema/db.changelog.v1.0.0.xml"/>
     <include file="schema/db.changelog.v1.0.1.xml"/>
-
-
-<!--    Не можеш да наливаш дата по id на ключа, защото нямаш гаранция, че всеки път този ключ ще е с това id. Трябва така да се налива value + ключ и в заявката базата сама да намира id-то на ключа и да го замества.-->
+    <include file="schema/db.changelog.v1.0.2.xml"/>
+    <include file="schema/db.changelog.v1.0.3.xml"/>
 
 
 

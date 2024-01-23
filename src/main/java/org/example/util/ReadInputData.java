@@ -1,9 +1,6 @@
 package org.example.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,6 +21,8 @@ public class ReadInputData {
         BufferedReader bufferedReader = new BufferedReader(streamReader);
         String line = "";
 
+
+//        File jsonFile = new ClassPathResource("jira/periodic-review-completed-valid-payload.json").getFile();
 
 //        String path =  this.getClass().getClassLoader()
 //                .getResource("employees.csv")
