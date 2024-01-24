@@ -1,25 +1,18 @@
 package org.example;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.github.opendevl.JFlat;
 import org.example.model.InputRecord;
 import org.example.model.OutputRecord;
 import org.example.repository.MlRepository;
 import org.example.repository.Repository;
 import org.example.service.AlcService;
-import org.example.util.ConvertUtils;
 import org.example.util.Processor;
 import org.example.util.ReadInputData;
-import org.example.util.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-import static org.example.util.ConvertUtils.toJson;
-import static org.example.util.Downloader.downloadCsv;
 import static org.example.util.Utils.summarisedReport;
 
 //import static org.example.util.Downloader.downloadCsv;
@@ -65,26 +58,16 @@ public class Main {
         AlcService alcService = new AlcService(processor, repository); // TODO подаваш интерфейси
 
         List<OutputRecord> outputRecordList = alcService.calculate(inputRecordList);
-//        double alc = 0.0;
-
-        for (OutputRecord outputRecord : outputRecordList) {
-//            alc = alc + outputRecord.getExpense();
-
-//            System.out.println(outputRecord.convertToCsv());
-//            System.out.println(toJson(outputRecord));
-        }
 
         System.out.println("Input records: " + inputRecordList.size());
         System.out.println("Found " + outputRecordList.size() + " records");
 
         System.out.println(summarisedReport(outputRecordList));
 
-//        System.out.println("Total spend = " + alc);
-
-//        String keyById = repository.getKeyById(3);
-//        Map<String, String> singleWordCombinations = repository.loadSingleWordCombinations();
-//        Set<String> strings = repository.loadKeys();
-//        Set<String> byKey = repository.loadByKey("бира 2.5");
+//        System.out.println("");
+//        for (OutputRecord outputRecord : outputRecordList) {
+//            System.out.println(outputRecord.convertToCsv());
+//        }
     }
 
     private static String cleanQuotes(String in) {

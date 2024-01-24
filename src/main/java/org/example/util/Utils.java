@@ -2,10 +2,12 @@ package org.example.util;
 
 import org.example.model.InputRecord;
 import org.example.model.OutputRecord;
+import org.example.model.SummarisedElement;
 import org.example.model.UndefinedResult;
 
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Utils {
 
@@ -109,12 +111,37 @@ public class Utils {
 
     public static String summarisedReport(List<OutputRecord> outputRecordList) {
 
-        // TODO
+        Map<String, SummarisedElement> summaryMap = new HashMap<>();
 
+        for (OutputRecord outputRecord : outputRecordList) {
+            if (summaryMap.containsKey(outputRecord.getKind())) {
+                SummarisedElement oldSummarisedElement = summaryMap.get(outputRecord.getKind());
 
-//                количество по вид i kolko si dal, начало на периода, край на периода, общо разход за периода
-        // консумация на ден / месец /година
+                SummarisedElement newSummarisedElement =
+                        new SummarisedElement(oldSummarisedElement.getVolume() + outputRecord.getVolume(),
+                                oldSummarisedElement.getExpense() + outputRecord.getExpense());
+                summaryMap.replace(outputRecord.getKind(), newSummarisedElement);
+            } else {
+                summaryMap.put(outputRecord.getKind(),
+                        new SummarisedElement(outputRecord.getVolume(), outputRecord.getExpense()));
+            }
+        }
 
-        return null;
+        AtomicReference<Double> totalExpense = new AtomicReference<>((double) 0);
+        StringBuilder result = new StringBuilder();
+
+        summaryMap.forEach((k, v) -> {
+            result.append(k).append(": ").append(v.getVolume()).append(" l, сума: ")
+                    .append(String.format("%.2f",v.getExpense()))
+                    .append(" лв.").append(System.lineSeparator());
+
+            totalExpense.set(totalExpense.get() + v.getExpense());
+        });
+
+        result.append(System.lineSeparator()).append("Общо: ").append( String.format("%.2f",totalExpense.get())).append(" лв.");
+
+        // TODO начало на периода, край на периода, консумация на ден / месец /година
+
+        return result.toString();
     }
 }
