@@ -1,6 +1,7 @@
 package org.example;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.opendevl.JFlat;
 import org.example.model.InputRecord;
 import org.example.model.OutputRecord;
 import org.example.repository.MlRepository;
@@ -19,6 +20,7 @@ import java.util.Set;
 
 import static org.example.util.ConvertUtils.toJson;
 import static org.example.util.Downloader.downloadCsv;
+import static org.example.util.Utils.summarisedReport;
 
 //import static org.example.util.Downloader.downloadCsv;
 
@@ -45,6 +47,7 @@ public class Main {
         while (!"".equals(inputContent.get(i)[0])) {
             InputRecord inputRecord = new InputRecord();
 
+            inputRecord.setId(i);
             inputRecord.setData(inputContent.get(i)[0]);
             inputRecord.setCategory(cleanQuotes(inputContent.get(i)[1]));
             inputRecord.setSubCategory(cleanQuotes(inputContent.get(i)[2]));
@@ -55,10 +58,6 @@ public class Main {
 
             inputRecordList.add(inputRecord);
             i++;
-
-//            if (!"".equals(inputRecord.getNotes())) {
-//                System.out.println(inputRecord.getNotes());
-//            }
         }
 
         Repository repository = new MlRepository();
@@ -66,17 +65,21 @@ public class Main {
         AlcService alcService = new AlcService(processor, repository); // TODO подаваш интерфейси
 
         List<OutputRecord> outputRecordList = alcService.calculate(inputRecordList);
-        double alc = 0.0;
+//        double alc = 0.0;
 
         for (OutputRecord outputRecord : outputRecordList) {
-//            System.out.println(outputRecord.convertToCsv());
-            alc = alc + outputRecord.getExpense();
+//            alc = alc + outputRecord.getExpense();
 
-            System.out.println(toJson(outputRecord));
+//            System.out.println(outputRecord.convertToCsv());
+//            System.out.println(toJson(outputRecord));
         }
 
+        System.out.println("Input records: " + inputRecordList.size());
         System.out.println("Found " + outputRecordList.size() + " records");
-        System.out.println("Total spend = " + alc);
+
+        System.out.println(summarisedReport(outputRecordList));
+
+//        System.out.println("Total spend = " + alc);
 
 //        String keyById = repository.getKeyById(3);
 //        Map<String, String> singleWordCombinations = repository.loadSingleWordCombinations();

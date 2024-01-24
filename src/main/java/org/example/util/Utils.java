@@ -5,12 +5,11 @@ import org.example.model.OutputRecord;
 import org.example.model.UndefinedResult;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Utils {
+
+    // TODO move to UtilConvertor class
 
     public static List<UndefinedResult> convertToUndefinedReultsList(List<InputRecord> inputRecordList) {
 
@@ -20,6 +19,7 @@ public class Utils {
             UndefinedResult undefinedResult = new UndefinedResult();
             undefinedResult.setInputRecord(inputRecord);
             undefinedResult.setResultMap(new HashMap<>());
+            undefinedResult.setPointProducers(new TreeMap<>());
             result.add(undefinedResult);
         }
 
@@ -47,6 +47,7 @@ public class Utils {
             String[] split = key.split("\\s+");
 
             OutputRecord result = new OutputRecord(
+                    inputRecord.getId(),
                     inputRecord.getData(),
                     inputRecord.getExpense(),
                     inputRecord.getAccount(),
@@ -54,12 +55,14 @@ public class Utils {
                     inputRecord.getNotes(),
                     Double.parseDouble(split[1]),
                     split[0],
-                    score);
+                    score,
+                    undefinedResult.getPointProducers());
 
             return result;
         }
 
         OutputRecord result = new OutputRecord(
+                inputRecord.getId(),
                 inputRecord.getData(),
                 inputRecord.getExpense(),
                 inputRecord.getAccount(),
@@ -67,24 +70,25 @@ public class Utils {
                 inputRecord.getNotes(),
                 0.0,
                 " Unrecognized",
-                0);
+                0,
+                new TreeMap<>());
 
         return result;
     }
 
-    public static Map<String, Integer> addPoints(String key, int point, Map<String, Integer> map) {
+    public static Map<String, Integer> addPoints(String key, int point, Map<String, Integer> resultMap) {
         if (key == null) {
-            return map;
+            return resultMap;
         }
 
-        if (!map.containsKey(key)) {
-            map.put(key, point);
+        if (!resultMap.containsKey(key)) {
+            resultMap.put(key, point);
         } else {
-            int currentPoint = map.get(key);
-            map.replace(key, currentPoint + point);
+            int currentPoint = resultMap.get(key);
+            resultMap.replace(key, currentPoint + point);
         }
 
-        return map;
+        return resultMap;
     }
 
     public static double roundToNDecimalPlaces(double value, int decimalPlaces) {
@@ -101,5 +105,16 @@ public class Utils {
         } catch (Exception e) {
             throw new RuntimeException("Грешка при закръгляне на числото.", e);
         }
+    }
+
+    public static String summarisedReport(List<OutputRecord> outputRecordList) {
+
+        // TODO
+
+
+//                количество по вид i kolko si dal, начало на периода, край на периода, общо разход за периода
+        // консумация на ден / месец /година
+
+        return null;
     }
 }

@@ -16,6 +16,9 @@ public class Processor {
     public List<UndefinedResult> processWithSingleWords(List<UndefinedResult> undefinedResultList,
                                                         Map<String, String> singleWordCombinations) {
 
+        final String methodName = "processWithSingleWords";
+        final int givenPoints = HIGH_POSSIBILITY;
+
         List<UndefinedResult> result = new ArrayList<>();
 
         for (UndefinedResult undefinedResult : undefinedResultList) {
@@ -25,7 +28,9 @@ public class Processor {
                 String note = undefinedResult.getInputRecord().getNotes().toLowerCase().trim();
 
                 if (singleWordCombinations.containsKey(note)) {
-                    addPoints(singleWordCombinations.get(note), HIGH_POSSIBILITY, undefinedResult.getResultMap());
+                    addPoints(singleWordCombinations.get(note), givenPoints, undefinedResult.getResultMap());
+                    undefinedResult.getPointProducers().put(methodName, givenPoints);
+
                 }
             }
             result.add(undefinedResult);
@@ -36,6 +41,9 @@ public class Processor {
 
     public List<UndefinedResult> processWithManyWords(String key, Set<String> combinations,
                                                       List<UndefinedResult> undefinedResultList) {
+
+        final String methodName = "processWithManyWords";
+        final int givenPoints = MEDIUM_POSSIBILITY;
 
         List<UndefinedResult> result = new ArrayList<>();
 
@@ -48,6 +56,7 @@ public class Processor {
                 for (String note : notes) {
                     if (combinations.contains(note)) {
                         addPoints(key, MEDIUM_POSSIBILITY, undefinedResult.getResultMap());
+                        undefinedResult.getPointProducers().put(methodName, givenPoints);
                     }
                 }
             }
@@ -72,6 +81,9 @@ public class Processor {
 
     public List<UndefinedResult> processByPrice(List<Double> prices, String key, double volumePerUnit,
                                                 List<UndefinedResult> undefinedResultList) {
+
+        final String methodName = "processByPrice";
+        final int givenPoints = LOW_POSSIBILITY;
         List<UndefinedResult> result = new ArrayList<>();
 
         for (UndefinedResult undefinedResult : undefinedResultList) {
@@ -87,7 +99,8 @@ public class Processor {
                 ) {
                     double totalVolume = volumePerUnit * count;
                     String keyToWrite = key + " " + totalVolume;
-                    addPoints(keyToWrite, LOW_POSSIBILITY, undefinedResult.getResultMap());
+                    addPoints(keyToWrite, givenPoints, undefinedResult.getResultMap());
+                    undefinedResult.getPointProducers().put(methodName, givenPoints);
                 }
             }
             result.add(undefinedResult);

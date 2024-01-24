@@ -2,11 +2,11 @@ package org.example.config;
 
 public class Config {
 
-    public final static String DELIMITER = ",";
+    public final static String CSV_SEPARATOR = ",";
 
     public static final String INPUT_FILE = "input/report.csv"; // TODO fix path
 
-    public static String BEER_3L = "бира 3";
+//    public static String BEER_3L = "бира 3";
 
     public final static Integer HIGH_POSSIBILITY = 3;
     public final static Integer MEDIUM_POSSIBILITY = 2;

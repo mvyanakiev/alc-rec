@@ -1,7 +1,10 @@
 package org.example.model;
 
+import java.util.Map;
+
 public class InputRecord {
 
+    private int id;
     private String data;
     private String category;
     private String subCategory;
@@ -10,7 +13,11 @@ public class InputRecord {
     private String payee; // Avanti
     private String notes;
 
-        public InputRecord(String data, String category, String subCategory, double expense, String account, String payee, String notes) {
+    public InputRecord() {}
+
+    public InputRecord(int id, String data, String category, String subCategory, double expense,
+                       String account, String payee, String notes) {
+        this.id = id;
         this.data = data;
         this.category = category;
         this.subCategory = subCategory;
@@ -20,7 +27,12 @@ public class InputRecord {
         this.notes = notes;
     }
 
-    public InputRecord() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getData() {

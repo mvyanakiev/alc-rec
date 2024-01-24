@@ -17,6 +17,8 @@ public class BeerWithoutNote implements OtherProcesses {
     private final static double BEER_PRICE = 1.4;
     private final static double VOLUME_PER_UNIT = 0.5;
     private final static String KEY = "бира ";
+    private final String PRODUCER_NAME = "BeerWithoutNote";
+    private final int GIVEN_POINTS = LOW_POSSIBILITY;
 
     @Override
     public List<UndefinedResult> process(List<UndefinedResult> undefinedResultList) {
@@ -35,7 +37,8 @@ public class BeerWithoutNote implements OtherProcesses {
                     && undefinedResult.getInputRecord().getAccount() == Account.CASH
             ) {
                 String key = KEY + count * VOLUME_PER_UNIT;
-                addPoints(key, LOW_POSSIBILITY, undefinedResult.getResultMap());
+                addPoints(key, GIVEN_POINTS, undefinedResult.getResultMap());
+                undefinedResult.getPointProducers().put(PRODUCER_NAME, GIVEN_POINTS);
             }
 
             result.add(undefinedResult);

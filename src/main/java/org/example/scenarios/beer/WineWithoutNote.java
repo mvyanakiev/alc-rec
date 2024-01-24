@@ -17,6 +17,8 @@ public class WineWithoutNote implements OtherProcesses {
     private final static double VOLUME_PER_UNIT = 1;
     private final static String KEY = "вино ";
     private final String SUBCATEGORY_A = "Алкохол";
+    private final String PRODUCER_NAME = "WineWithoutNote";
+    private final int GIVEN_POINTS = LOW_POSSIBILITY;
 
     @Override
     public List<UndefinedResult> process(List<UndefinedResult> undefinedResultList) {
@@ -31,7 +33,8 @@ public class WineWithoutNote implements OtherProcesses {
                     && undefinedResult.getInputRecord().getSubCategory().equalsIgnoreCase(SUBCATEGORY_A)
             ) {
                 String key = KEY + VOLUME_PER_UNIT;
-                addPoints(key, LOW_POSSIBILITY, undefinedResult.getResultMap());
+                addPoints(key, GIVEN_POINTS, undefinedResult.getResultMap());
+                undefinedResult.getPointProducers().put(PRODUCER_NAME, GIVEN_POINTS);
             }
 
             result.add(undefinedResult);

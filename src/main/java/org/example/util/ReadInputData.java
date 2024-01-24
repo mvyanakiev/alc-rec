@@ -7,7 +7,7 @@ import java.util.List;
 
 
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.example.config.Config.DELIMITER;
+import static org.example.config.Config.CSV_SEPARATOR;
 import static org.example.config.Config.INPUT_FILE;
 
 public class ReadInputData {
@@ -32,7 +32,7 @@ public class ReadInputData {
             while ((line = bufferedReader.readLine()) != null) {
 
                 String[] tokens = Arrays
-                    .stream(line.split(DELIMITER))
+                    .stream(line.split(CSV_SEPARATOR))
                     .map(String::trim)
                     .toArray(String[]::new);
 

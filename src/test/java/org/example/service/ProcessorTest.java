@@ -92,6 +92,7 @@ class ProcessorTest {
 
     private List<InputRecord> getInputList() {
         InputRecord ir1 = new InputRecord(
+                1,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -102,6 +103,7 @@ class ProcessorTest {
         );
 
         InputRecord ir2 = new InputRecord(
+                2,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -112,6 +114,7 @@ class ProcessorTest {
         );
 
         InputRecord ir3 = new InputRecord(
+                3,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -122,6 +125,7 @@ class ProcessorTest {
         );
 
         InputRecord ir4 = new InputRecord(
+                4,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -132,6 +136,7 @@ class ProcessorTest {
         );
 
         InputRecord ir5 = new InputRecord(
+                5,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -142,6 +147,7 @@ class ProcessorTest {
         );
 
         InputRecord ir6 = new InputRecord(
+                6,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -152,6 +158,7 @@ class ProcessorTest {
         );
 
         InputRecord ir7 = new InputRecord(
+                7,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -162,6 +169,7 @@ class ProcessorTest {
         );
 
         InputRecord ir8 = new InputRecord(
+                8,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -172,6 +180,7 @@ class ProcessorTest {
         );
 
         InputRecord math1 = new InputRecord(
+                9,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -182,6 +191,7 @@ class ProcessorTest {
         );
 
         InputRecord math2 = new InputRecord(
+                10,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -210,6 +220,7 @@ class ProcessorTest {
     private List<InputRecord> getInputMathList() {
 
         InputRecord math1 = new InputRecord(
+                11,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -220,6 +231,7 @@ class ProcessorTest {
         );
 
         InputRecord math2 = new InputRecord(
+                12,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -230,6 +242,7 @@ class ProcessorTest {
         );
 
         InputRecord math3 = new InputRecord(
+                13,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -240,6 +253,7 @@ class ProcessorTest {
         );
 
         InputRecord math4 = new InputRecord(
+                14,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -250,6 +264,7 @@ class ProcessorTest {
         );
 
         InputRecord math5 = new InputRecord(
+                15,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
@@ -260,6 +275,7 @@ class ProcessorTest {
         );
 
         InputRecord math6 = new InputRecord(
+                16,
                 faker.date().birthday().toString(),
                 CATEGORY,
                 SUBCATEGORY_ALC,
