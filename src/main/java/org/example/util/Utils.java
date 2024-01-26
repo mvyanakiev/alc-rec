@@ -131,7 +131,7 @@ public class Utils {
         StringBuilder result = new StringBuilder();
 
         summaryMap.forEach((k, v) -> {
-            result.append(k).append(": ").append(v.getVolume()).append(" l, сума: ")
+            result.append(k).append(":\t").append(v.getVolume()).append(" l, сума: ")
                     .append(String.format("%.2f",v.getExpense()))
                     .append(" лв.").append(System.lineSeparator());
 

@@ -15,13 +15,13 @@ import java.util.List;
 
 import static org.example.util.Utils.summarisedReport;
 
-//import static org.example.util.Downloader.downloadCsv;
+import static org.example.util.Downloader.downloadCsv;
 
 public class Main {
     public static void main(String[] args) throws IOException, JsonProcessingException {
 
         String ipAddress = "192.168.1.108";
-        int port = 50440;
+        int port = 51236;
 
         String csvUrl = "http://" + ipAddress + ":" + port + "/Report.csv";
 

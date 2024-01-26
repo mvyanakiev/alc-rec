@@ -13,7 +13,7 @@ public class Downloader {
         URL url = new URL(csvUrl);
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
-        String destinationFilePath = "report.csv";
+        String destinationFilePath = "src/main/resources/input/report.csv";
 
         try (InputStream inputStream = httpURLConnection.getInputStream();
              FileOutputStream outputStream = new FileOutputStream(destinationFilePath)) {
