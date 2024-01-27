@@ -10,18 +10,17 @@ import org.example.util.Processor;
 import org.example.util.ReadInputData;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.util.Utils.summarisedReport;
-
+import static org.example.util.ConvertUtils.*;
 import static org.example.util.Downloader.downloadCsv;
+import static org.example.util.Utils.summarisedReport;
 
 public class Main {
     public static void main(String[] args) throws IOException, JsonProcessingException {
 
         String ipAddress = "192.168.1.108";
-        int port = 51236;
+        int port = 51327;
 
         String csvUrl = "http://" + ipAddress + ":" + port + "/Report.csv";
 
@@ -34,24 +33,7 @@ public class Main {
 //        }
 
         List<String[]> inputContent = ReadInputData.readContent();
-        List<InputRecord> inputRecordList = new ArrayList<>();
-
-        int i = 1;
-        while (!"".equals(inputContent.get(i)[0])) {
-            InputRecord inputRecord = new InputRecord();
-
-            inputRecord.setId(i);
-            inputRecord.setData(inputContent.get(i)[0]);
-            inputRecord.setCategory(cleanQuotes(inputContent.get(i)[1]));
-            inputRecord.setSubCategory(cleanQuotes(inputContent.get(i)[2]));
-            inputRecord.setExpense(Double.parseDouble(cleanQuotes(inputContent.get(i)[3]).trim()));
-            inputRecord.setAccount(cleanQuotes(inputContent.get(i)[4]));
-            inputRecord.setPayee(cleanQuotes(inputContent.get(i)[5]));
-            inputRecord.setNotes(cleanQuotes(inputContent.get(i)[6]));
-
-            inputRecordList.add(inputRecord);
-            i++;
-        }
+        List<InputRecord> inputRecordList = convertToInputRecordList(inputContent);
 
         Repository repository = new MlRepository();
         Processor processor= new Processor(); // TODO Да мине през интерфейс -> виж Repository
@@ -64,13 +46,11 @@ public class Main {
 
         System.out.println(summarisedReport(outputRecordList));
 
+        // For debug
 //        System.out.println("");
 //        for (OutputRecord outputRecord : outputRecordList) {
-//            System.out.println(outputRecord.convertToCsv());
+//            System.out.println(convertToCsv(outputRecord));
+//            System.out.println(convertToJson(outputRecord));
 //        }
-    }
-
-    private static String cleanQuotes(String in) {
-        return in.substring(1, in.length()-1);
     }
 }

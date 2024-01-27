@@ -1,7 +1,5 @@
 package org.example.model;
 
-import java.util.Map;
-
 public class InputRecord {
 
     private int id;
@@ -9,8 +7,8 @@ public class InputRecord {
     private String category;
     private String subCategory;
     private double expense;
-    private Account account; // Revolut
-    private String payee; // Avanti
+    private Account account;
+    private String payee;
     private String notes;
 
     public InputRecord() {}

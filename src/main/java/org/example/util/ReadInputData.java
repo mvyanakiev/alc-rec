@@ -28,6 +28,8 @@ public class ReadInputData {
 //                .getResource("employees.csv")
 //                .getPath();
 
+        // TODO tread sleep synced with time out for download;
+
         try {
             while ((line = bufferedReader.readLine()) != null) {
 

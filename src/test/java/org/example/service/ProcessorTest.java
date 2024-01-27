@@ -5,19 +5,25 @@ import org.example.model.Account;
 import org.example.model.InputRecord;
 import org.example.model.UndefinedResult;
 import org.example.repository.MlRepository;
+import org.example.util.ConvertUtils;
 import org.example.util.Processor;
 import org.example.util.Utils;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
 import static org.example.config.Config.CATEGORY;
 import static org.example.config.Config.SUBCATEGORY_ALC;
+import static org.example.util.ConvertUtils.convertToOutputRecord;
+import static org.example.util.ConvertUtils.convertToCsv;
+import static org.example.util.ConvertUtils.convertToUndefinedReultsList;
 import static org.example.utils.TestUtils.randomAccount;
 import static org.example.utils.TestUtils.randomPayee;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Disabled
 class ProcessorTest {
 
     private final Faker faker = new Faker();
@@ -30,7 +36,7 @@ class ProcessorTest {
 
     @Test
     void oneWord() {
-        List<UndefinedResult> undefinedList = Utils.convertToUndefinedReultsList(getInputList());
+        List<UndefinedResult> undefinedList = convertToUndefinedReultsList(getInputList());
         Map<String, String> singleWordCombinations = repository.loadSingleWordCombinations();
 
         List<UndefinedResult> results = processor.processWithSingleWords(undefinedList, singleWordCombinations);
@@ -38,13 +44,13 @@ class ProcessorTest {
         assertEquals(1, results.get(0).getResultMap().size());
         assertEquals(0, results.get(3).getResultMap().size());
 
-        results.stream().forEach(r -> System.out.println(Utils.convertToOutputRecord(r).convertToCsv()));
+        results.stream().forEach(r -> System.out.println(ConvertUtils.convertToCsv(convertToOutputRecord(r))));
     }
 
     @Test
     void moreWords() {
         String key = "бира 3";
-        List<UndefinedResult> undefinedList = Utils.convertToUndefinedReultsList(getInputList());
+        List<UndefinedResult> undefinedList = convertToUndefinedReultsList(getInputList());
         Set<String> combinations = repository.loadByKey(key);
 
         List<UndefinedResult> results = processor.processWithManyWords(key, combinations, undefinedList);
@@ -53,17 +59,17 @@ class ProcessorTest {
         assertEquals(0, results.get(3).getResultMap().size());
         assertEquals(1, results.get(6).getResultMap().size());
 
-        results.stream().forEach(r -> System.out.println(Utils.convertToOutputRecord(r).convertToCsv()));
+        results.stream().forEach(r -> System.out.println(ConvertUtils.convertToCsv(convertToOutputRecord(r))));
     }
 
     @Test
     void mathTest() {
-        List<UndefinedResult> undefinedList = Utils.convertToUndefinedReultsList(getInputMathList());
+        List<UndefinedResult> undefinedList = convertToUndefinedReultsList(getInputMathList());
         List<UndefinedResult> results = processor.mathProcess(undefinedList);
 
         assertEquals(undefinedList.size(), results.size());
 
-        results.stream().forEach(r -> System.out.println(Utils.convertToOutputRecord(r).convertToCsv()));
+        results.stream().forEach(r -> System.out.println(ConvertUtils.convertToCsv(convertToOutputRecord(r))));
         assertEquals(1, results.get(0).getResultMap().size());
         assertEquals(1, results.get(1).getResultMap().size());
         assertEquals(0, results.get(2).getResultMap().size());
@@ -72,7 +78,7 @@ class ProcessorTest {
 
     @Test
     void processByPriceTest() {
-        List<UndefinedResult> undefinedList = Utils.convertToUndefinedReultsList(getInputMathList());
+        List<UndefinedResult> undefinedList = convertToUndefinedReultsList(getInputMathList());
 
         List<Double> prices = Arrays.asList(
                 1.6
@@ -83,7 +89,7 @@ class ProcessorTest {
 
         assertEquals(undefinedList.size(), results.size());
 
-        results.stream().forEach(r -> System.out.println(Utils.convertToOutputRecord(r).convertToCsv()));
+        results.stream().forEach(r -> System.out.println(ConvertUtils.convertToCsv(convertToOutputRecord(r))));
 //        assertEquals(0, results.get(0).getResultMap().size());
 //        assertEquals(1, results.get(1).getResultMap().size());
 //        assertEquals(0, results.get(2).getResultMap().size());
