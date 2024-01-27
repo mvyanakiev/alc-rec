@@ -5,6 +5,7 @@ import java.util.*;
 
 public class MlRepository implements Repository {
 
+    @Override
     public Map<String, String> loadSingleWordCombinations() {
         String sql = "SELECT i.input, k.key FROM inputs i JOIN keys k ON k.id = i.key_id;";
 
@@ -46,6 +47,7 @@ public class MlRepository implements Repository {
         return resultList;
     }
 
+    @Override
     public Set<String> loadKeys() {
         String sql = "SELECT key FROM keys;";
 

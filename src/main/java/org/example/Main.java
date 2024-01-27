@@ -1,6 +1,7 @@
 package org.example;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.model.InputRecord;
 import org.example.model.OutputRecord;
 import org.example.repository.MlRepository;
@@ -13,14 +14,17 @@ import java.io.IOException;
 import java.util.List;
 
 import static org.example.util.ConvertUtils.*;
-import static org.example.util.Downloader.downloadCsv;
 import static org.example.util.Utils.summarisedReport;
 
 public class Main {
-    public static void main(String[] args) throws IOException, JsonProcessingException {
 
+    private static final Logger log = LogManager.getLogger(Main.class);
+
+    public static void main(String[] args) throws IOException {
         String ipAddress = "192.168.1.108";
         int port = 51327;
+        boolean jsonOutput = true;
+        boolean csvOutput = false;
 
         String csvUrl = "http://" + ipAddress + ":" + port + "/Report.csv";
 
@@ -46,11 +50,9 @@ public class Main {
 
         System.out.println(summarisedReport(outputRecordList));
 
-        // For debug
-//        System.out.println("");
-//        for (OutputRecord outputRecord : outputRecordList) {
-//            System.out.println(convertToCsv(outputRecord));
-//            System.out.println(convertToJson(outputRecord));
-//        }
+        for (OutputRecord outputRecord : outputRecordList) {
+                log.debug(convertToCsv(outputRecord)); // TODO fix log https://mkyong.com/logging/apache-log4j-2-tutorials/
+                log.debug(convertToJson(outputRecord));
+        }
     }
 }

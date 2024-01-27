@@ -1,14 +1,15 @@
 package org.example.util;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.example.config.Config.CSV_SEPARATOR;
-import static org.example.config.Config.INPUT_FILE;
 
 public class ReadInputData {
 
@@ -19,7 +20,7 @@ public class ReadInputData {
         InputStream is = classloader.getResourceAsStream("input/report.csv");
         InputStreamReader streamReader = new InputStreamReader(is, UTF_8);
         BufferedReader bufferedReader = new BufferedReader(streamReader);
-        String line = "";
+        String line;
 
 
 //        File jsonFile = new ClassPathResource("jira/periodic-review-completed-valid-payload.json").getFile();

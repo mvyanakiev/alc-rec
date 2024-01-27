@@ -1,12 +1,12 @@
 package org.example.util;
 
-import org.example.model.InputRecord;
 import org.example.model.OutputRecord;
 import org.example.model.SummarisedElement;
-import org.example.model.UndefinedResult;
 
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Utils {

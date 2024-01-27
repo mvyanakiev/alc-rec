@@ -7,7 +7,6 @@ import org.example.model.UndefinedResult;
 import org.example.repository.MlRepository;
 import org.example.util.ConvertUtils;
 import org.example.util.Processor;
-import org.example.util.Utils;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +15,6 @@ import java.util.*;
 import static org.example.config.Config.CATEGORY;
 import static org.example.config.Config.SUBCATEGORY_ALC;
 import static org.example.util.ConvertUtils.convertToOutputRecord;
-import static org.example.util.ConvertUtils.convertToCsv;
 import static org.example.util.ConvertUtils.convertToUndefinedReultsList;
 import static org.example.utils.TestUtils.randomAccount;
 import static org.example.utils.TestUtils.randomPayee;

@@ -10,7 +10,7 @@ import static org.example.config.Config.OUTPUT_FILE;
 
 public class Downloader {
 
-    public static void downloadCsv(String csvUrl) throws IOException, InterruptedException {
+    public static void downloadCsv(String csvUrl) throws IOException {
 
         URL url = new URL(csvUrl);
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();

@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface OtherProcesses {
 
-    public List<UndefinedResult> process (List<UndefinedResult> inputList);
+    List<UndefinedResult> process(List<UndefinedResult> inputList);
 
 }
