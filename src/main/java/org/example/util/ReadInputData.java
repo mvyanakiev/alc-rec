@@ -17,7 +17,7 @@ public class ReadInputData {
         List<String[]> result = new ArrayList<>();
 
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        InputStream is = classloader.getResourceAsStream("input/report.csv");
+        InputStream is = classloader.getResourceAsStream("input/Report.csv");
         InputStreamReader streamReader = new InputStreamReader(is, UTF_8);
         BufferedReader bufferedReader = new BufferedReader(streamReader);
         String line;
@@ -38,6 +38,13 @@ public class ReadInputData {
                     .stream(line.split(CSV_SEPARATOR))
                     .map(String::trim)
                     .toArray(String[]::new);
+
+                // TODO Regex
+
+                if (tokens.length != 8) {
+                    tokens[6] = tokens[6] + "." + tokens[7];
+                    tokens[7] = tokens[8];
+                }
 
                 result.add(tokens);
             }

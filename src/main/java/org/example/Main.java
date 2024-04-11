@@ -11,10 +11,12 @@ import org.example.util.Processor;
 import org.example.util.ReadInputData;
 
 import java.io.IOException;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 import static org.example.util.ConvertUtils.*;
 import static org.example.util.Utils.summarisedReport;
+import static org.example.util.Utils.validateOutput;
 
 public class Main {
 
@@ -23,9 +25,6 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String ipAddress = "192.168.1.108";
         int port = 51327;
-        boolean jsonOutput = true;
-        boolean csvOutput = false;
-
         String csvUrl = "http://" + ipAddress + ":" + port + "/Report.csv";
 
 //        try {
@@ -46,13 +45,12 @@ public class Main {
         List<OutputRecord> outputRecordList = alcService.calculate(inputRecordList);
 
         System.out.println("Input records: " + inputRecordList.size());
-        System.out.println("Found " + outputRecordList.size() + " records");
+        System.out.println("Found: " + outputRecordList.size() + " records.");
 
-        System.out.println(summarisedReport(outputRecordList));
+        LocalDate firstDate = LocalDate.parse(inputRecordList.get(0).getData());
+        LocalDate lastDate = LocalDate.parse(inputRecordList.get(inputRecordList.size()-1).getData());
+        System.out.println(summarisedReport(outputRecordList, firstDate, lastDate));
 
-        for (OutputRecord outputRecord : outputRecordList) {
-                log.debug(convertToCsv(outputRecord)); // TODO fix log https://mkyong.com/logging/apache-log4j-2-tutorials/
-                log.debug(convertToJson(outputRecord));
-        }
+        validateOutput(inputRecordList, outputRecordList);
     }
 }

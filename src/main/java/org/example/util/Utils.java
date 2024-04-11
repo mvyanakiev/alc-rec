@@ -1,13 +1,17 @@
 package org.example.util;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.example.model.InputRecord;
 import org.example.model.OutputRecord;
 import org.example.model.SummarisedElement;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+
+import static org.example.config.Config.SUBCATEGORY_ALC;
+import static org.example.util.ConvertUtils.convertToJson;
 
 public class Utils {
 
@@ -42,7 +46,11 @@ public class Utils {
         }
     }
 
-    public static String summarisedReport(List<OutputRecord> outputRecordList) {
+    public static String summarisedReport(List<OutputRecord> outputRecordList, LocalDate firstDate, LocalDate lastDate) {
+
+        // TODO extract mount from LocalDate
+        long daysBetween = lastDate.toEpochDay() - firstDate.toEpochDay();
+
         Map<String, SummarisedElement> summaryMap = new HashMap<>();
 
         for (OutputRecord outputRecord : outputRecordList) {
@@ -64,15 +72,15 @@ public class Utils {
 
         summaryMap.forEach((k, v) -> {
             result.append(k).append(":\t").append(v.getVolume()).append(" l, сума: ")
-                    .append(String.format("%.2f",v.getExpense()))
-                    .append(" лв.").append(System.lineSeparator());
+                    .append(String.format("%.2f", v.getExpense()))
+                    .append(" лв.").append(" (").append(String.format("%.2f", v.getVolume() / daysBetween * 1000))
+                    .append(" ml/ден)").append(System.lineSeparator());
 
             totalExpense.set(totalExpense.get() + v.getExpense());
         });
 
-        result.append(System.lineSeparator()).append("Общо: ").append( String.format("%.2f",totalExpense.get())).append(" лв.");
+        result.append(System.lineSeparator()).append("Общо: ").append(String.format("%.2f", totalExpense.get())).append(" лв.");
 
-        // TODO начало на периода, край на периода, консумация на ден / месец /година
         // описваш наличното и смята само изпитото
         // да чете и от забавление-други
 
@@ -80,6 +88,33 @@ public class Utils {
     }
 
     public static String cleanQuotes(String in) {
-        return in.substring(1, in.length()-1);
+        return in.substring(1, in.length() - 1);
+    }
+
+    public static void validateOutput(List<InputRecord> inputRecordList, List<OutputRecord> outputRecordList)
+            throws JsonProcessingException {
+
+        Set<String> missingRecords = new HashSet<>();
+        Set<Integer> outputRecordIdSet = new HashSet<>();
+        outputRecordList.forEach(outputRecord -> outputRecordIdSet.add(outputRecord.getId()));
+        double price = 0;
+
+        for (InputRecord inputRecord : inputRecordList) {
+            if (inputRecord.getSubCategory().equalsIgnoreCase(SUBCATEGORY_ALC)
+                    && !outputRecordIdSet.contains(inputRecord.getId())) {
+
+                System.out.println("Входящ липсващ запис: ");
+                System.out.println(convertToJson(inputRecord));
+
+                price += inputRecord.getExpense();
+                missingRecords.add(inputRecord.getNotes());
+            }
+        }
+
+        if (price > 0) {
+            System.out.println("Разлика: " + price);
+            System.out.println("Неразпознати записи: ");
+            missingRecords.forEach(System.out::println);
+        }
     }
 }

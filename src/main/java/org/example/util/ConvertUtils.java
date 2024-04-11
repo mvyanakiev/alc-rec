@@ -43,8 +43,7 @@ public class ConvertUtils {
     public static List<InputRecord> convertToInputRecordList(List<String[]> inputContent) {
         List<InputRecord> inputRecordList = new ArrayList<>();
 
-        int i = 1;
-        while (!"".equals(inputContent.get(i)[0])) {
+        for (int i = 1; i < inputContent.size() ; i++) {
             InputRecord inputRecord = new InputRecord();
 
             inputRecord.setId(i);
@@ -57,7 +56,6 @@ public class ConvertUtils {
             inputRecord.setNotes(cleanQuotes(inputContent.get(i)[6]));
 
             inputRecordList.add(inputRecord);
-            i++;
         }
 
         return inputRecordList;
