@@ -17,7 +17,7 @@ public class ReadInputData {
         List<String[]> result = new ArrayList<>();
 
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        InputStream is = classloader.getResourceAsStream("input/Report.csv");
+        InputStream is = classloader.getResourceAsStream("input/report.csv");
         InputStreamReader streamReader = new InputStreamReader(is, UTF_8);
         BufferedReader bufferedReader = new BufferedReader(streamReader);
         String line;

@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 import static org.example.util.ConvertUtils.*;
+import static org.example.util.Downloader.downloadCsv;
 import static org.example.util.Utils.summarisedReport;
 import static org.example.util.Utils.validateOutput;
 
@@ -23,12 +24,13 @@ public class Main {
     private static final Logger log = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) throws IOException {
-        String ipAddress = "192.168.1.108";
-        int port = 51327;
+        String ipAddress = "192.168.1.102";
+        int port = 49252;
         String csvUrl = "http://" + ipAddress + ":" + port + "/Report.csv";
 
 //        try {
 //            downloadCsv(csvUrl);
+//            Thread.sleep(2000);
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        } catch (InterruptedException e) {

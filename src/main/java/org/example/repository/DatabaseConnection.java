@@ -20,6 +20,4 @@ public class DatabaseConnection {
             throw new RuntimeException("Error connecting to the database", e);
         }
     }
-
-
 }

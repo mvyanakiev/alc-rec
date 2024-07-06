@@ -100,6 +100,9 @@ public class InputRecord {
             case "Поддръжка кола":
                 this.account = Account.CAR_SUPPORT;
                 break;
+            case "Revolut EUR":
+                this.account = Account.REVOLUT_EUR;
+                break;
 
             default:
                 throw new IllegalArgumentException("Invalid Account type: " + inputType);
