@@ -20,6 +20,9 @@
             <column name="KEY" value="бира 0.33"/>
         </insert>
         <insert tableName="KEYS">
+            <column name="KEY" value="бира 0.4"/>
+        </insert>
+        <insert tableName="KEYS">
             <column name="KEY" value="вино 3"/>
         </insert>
         <insert tableName="KEYS">

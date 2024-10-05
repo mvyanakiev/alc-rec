@@ -23,21 +23,23 @@ public class Main {
 
     private static final Logger log = LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) throws IOException {
-        String ipAddress = "192.168.1.102";
-        int port = 49252;
+    public static void main(String[] args) throws IOException, InterruptedException {
+        String ipAddress = "192.168.1.101";
+        int port = 59013;
+        String filePath = "/Users/milkoyanakiev/Downloads/report.csv";
+
         String csvUrl = "http://" + ipAddress + ":" + port + "/Report.csv";
 
-//        try {
-//            downloadCsv(csvUrl);
-//            Thread.sleep(2000);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
+            try {
+                downloadCsv(csvUrl, filePath);
+                Thread.sleep(500);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
 
-        List<String[]> inputContent = ReadInputData.readContent();
+        List<String[]> inputContent = ReadInputData.readContent(filePath);
         List<InputRecord> inputRecordList = convertToInputRecordList(inputContent);
 
         Repository repository = new MlRepository();
