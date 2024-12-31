@@ -17,5 +17,7 @@
     <include file="schema/db.changelog.v1.0.5.xml"/>
     <include file="schema/db.changelog.v1.0.6.xml"/>
     <include file="schema/db.changelog.v1.0.7.xml"/>
+    <include file="schema/db.changelog.v1.0.8.xml"/>
+    <include file="schema/db.changelog.v1.0.9.xml"/>
 
 </databaseChangeLog>

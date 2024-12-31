@@ -20,6 +20,6 @@ docker run \
 -d dpage/pgadmin4
 ```
 
-За `pgadmin connect` взимаш `ip`-то на посгрес контейнера  
+За `pgadmin connect` взимаш `IPAddress`-a на постгрес контейнера  
 
 `liquibase:update`

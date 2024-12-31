@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1.0.9-insert-basic-values" author="Milko">
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 1'), 'б1');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 1'), 'b1');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 1'), 'б 1');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 1'), 'b 1');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 1.5'), 'б1.5');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 1.5'), 'b1.5');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 1.5'), 'b1,5');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 1.5'), 'б1,5');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 1.5'), 'b 1.5');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 1.5'), 'б 1.5');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 1.5'), 'б 1,5');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 1.5'), 'b 1,5');</sql>
+
+
+
+
+
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 3.5'), 'б3.5');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 3.5'), 'б 3.5');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 3.5'), 'b 3.5');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 3.5'), 'б3,5');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 3.5'), 'b3,5');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 3.5'), 'б 3,5');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 3.5'), 'b 3,5');</sql>
+
+    </changeSet>
+</databaseChangeLog>
