@@ -5,6 +5,9 @@
 
     <changeSet id="1.0.1-insert-basic-data" author="Milko">
         <insert tableName="KEYS">
+            <column name="KEY" value="бира 4"/>
+        </insert>
+        <insert tableName="KEYS">
             <column name="KEY" value="бира 3"/>
         </insert>
         <insert tableName="KEYS">

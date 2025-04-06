@@ -3,6 +3,11 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
     <changeSet id="1.0.3-insert-basic-values" author="Milko">
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 4'), 'бира 4');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 4'), 'б 4');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 4'), 'b4');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 4'), 'b 4');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 4'), 'бира4');</sql>
         <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 3'), 'бира 3');</sql>
         <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 3'), 'б 3');</sql>
         <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 3'), 'b3');</sql>

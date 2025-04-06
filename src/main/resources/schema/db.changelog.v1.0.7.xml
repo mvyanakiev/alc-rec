@@ -9,6 +9,9 @@
         <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='вино 2'), 'v2');</sql>
         <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='джин 0.7'), 'джин 0.7');</sql>
         <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='ром 0.7'), 'ром 0.7');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='ром 0.7'), 'ром0.7');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='ром 0.7'), 'ром 0,7');</sql>
+        <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='ром 0.7'), 'ром0,7');</sql>
         <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 0.4'), 'б0.4');</sql>
         <sql>INSERT INTO inputs (key_id, input) VALUES ((SELECT id FROM keys WHERE key='бира 0.4'), 'b0.4');</sql>
     </changeSet>
